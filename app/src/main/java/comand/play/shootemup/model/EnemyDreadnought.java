@@ -10,6 +10,8 @@ import comand.play.shootemup.controller.GameView;
 
 public class EnemyDreadnought extends Enemy{
     float size = 0.14f;
+    private float fireStatus = 0.5f;
+    private float fireReating = 1f;
 
     public EnemyDreadnought(Point location, Point speed, int health) {
         super(location, speed, health);
@@ -73,6 +75,13 @@ public class EnemyDreadnought extends Enemy{
         super.Tick(deltaTime);
         if (speed.x > 0)
             speed.x -= 0.1f;
-
+        fireStatus-=deltaTime;
+        if (fireStatus<= 0){
+            float bSize= 0.02f;
+            fireStatus = fireReating;
+            GameController.eBullet.add(new Bullet(new Point(location.x, location.y+size),
+                    new Point(0,speed.y*2)
+                    , bSize, false));
+        }
     }
 }

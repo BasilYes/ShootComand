@@ -3,12 +3,14 @@ package comand.play.shootemup.controller;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Random;
 
 import comand.play.shootemup.MainActivity;
 import comand.play.shootemup.model.Bonus;
+import comand.play.shootemup.model.DefaultEnemy;
 import comand.play.shootemup.model.Enemy;
 import comand.play.shootemup.model.EnemyDreadnought;
-import comand.play.shootemup.model.EnemyTest;
+import comand.play.shootemup.model.SpiralEnemy;
 import comand.play.shootemup.model.Point;
 import comand.play.shootemup.model.GameObject;
 import comand.play.shootemup.model.Player;
@@ -128,8 +130,20 @@ public class GameController{
         double defaultChance = 0.5*(1-backChance)+backChance;
 
         if (event >= 41.9f) {
-                //enemy.add(new EnemyDreadnought(new Point((float) Math.random() * (0.9f) + 0.05f, -0.05f), new Point(1, 2), 2));
-                enemy.add(new EnemyTest(new Point((float) Math.random() * (0.9f) + 0.05f, -0.05f)));
+                Double chance = Math.random();
+                if (0.1 <= chance && chance <    0.3){
+                    enemy.add(new EnemyDreadnought(new Point((float) Math.random() * (0.9f) + 0.05f, -0.05f), new Point(1, 2), 2));
+                } else if (0.3 <= chance && chance < 0.6){
+                    enemy.add(new DefaultEnemy(new Point((float) Math.random() * (0.1f) + 0.05f, -0.05f)));
+                    enemy.add(new DefaultEnemy(new Point((float) Math.random() * (0.9f) + 0.05f, -0.05f)));
+                } else {
+                    enemy.add(new SpiralEnemy(new Point((float) Math.random() * (0.1f) + 0.1f, -0.05f)));
+                    enemy.add(new SpiralEnemy(new Point((float) Math.random() * (0.5f) + 0.2f, -0.05f)));
+                    enemy.add(new SpiralEnemy(new Point((float) Math.random() * (0.9f) + 0.3f, -0.05f)));
+                }
+
+
+
                 event = 0;
 
         }

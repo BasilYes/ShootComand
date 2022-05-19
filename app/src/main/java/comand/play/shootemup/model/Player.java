@@ -9,8 +9,9 @@ import comand.play.shootemup.controller.GameController;
 import comand.play.shootemup.controller.GameView;
 
 public class Player extends GameObject {
+    public int bulletCount = 1;
     float size = 0.12f;
-    private float fireStatus = 0.5f;
+    private float fireStatus = 0.4f;
     private float fireReating = 0.3f;
 
     public Player(Point location) {
@@ -71,14 +72,84 @@ public class Player extends GameObject {
     public void Tick(float deltaTime) {
         super.Tick(deltaTime);
         fireStatus-=deltaTime;
+
         if (fireStatus<= 0){
             float bSize= 0.02f;
             fireStatus = fireReating;
-            GameController.bullet.add(new Bullet(new Point(location.x, location.y-size*0.65f),
-                    new Point(0,-1.0f)
-                    , bSize, true));
+            float bulletStatus = (1.0f - 1.0f/fireReating)*2.0f + 1.0f ;
+            switch (bulletCount){
+                case 1:
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x, location.y-size*0.65f),
+                            new Point(0,bulletStatus)
+                            , bSize, true));
+                    break;
+                case 2:
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x + size*0.3f, location.y-size*0.2f),
+                            new Point(0,-bulletStatus)
+                            , bSize, true));
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x - size*0.3f, location.y-size*0.2f),
+                            new Point(0,-bulletStatus)
+                            , bSize, true));
+                    break;
+                case 3:
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x, location.y-size*0.65f),
+                            new Point(0,-bulletStatus)
+                            , bSize, true));
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x + size*0.3f, location.y-size*0.2f),
+                            new Point(0,-bulletStatus)
+                            , bSize, true));
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x - size*0.3f, location.y-size*0.2f),
+                            new Point(0,-bulletStatus)
+                            , bSize, true));
+                    break;
+                case 4:
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x + size*0.3f, location.y-size*0.2f),
+                            new Point(0,-bulletStatus)
+                            , bSize, true));
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x - size*0.3f, location.y-size*0.2f),
+                            new Point(0,-bulletStatus)
+                            , bSize, true));
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x + size*0.6f, location.y+size*0.25f),
+                            new Point(0,-bulletStatus)
+                            , bSize, true));
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x - size*0.6f, location.y+size*0.25f),
+                            new Point(0,-bulletStatus)
+                            , bSize, true));
+                    break;
+                default:
+                    GameController.bullet.add(new Bullet(new Point(location.x, location.y-size*0.65f),
+                            new Point(0,-1.0f)
+                            , bSize, true));
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x + size*0.3f, location.y-size*0.2f),
+                            new Point(0,-1.0f)
+                            , bSize, true));
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x - size*0.3f, location.y-size*0.2f),
+                            new Point(0,-1.0f)
+                            , bSize, true));
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x + size*0.6f, location.y+size*0.25f),
+                            new Point(0,-1.0f)
+                            , bSize, true));
+                    GameController.bullet.add(new Bullet(
+                            new Point(location.x - size*0.6f, location.y+size*0.25f),
+                            new Point(0,-1.0f)
+                            , bSize, true));
+                    break;
+            }
+            }
         }
-    }
 
     public void moveTo(float x, float y)
     {
