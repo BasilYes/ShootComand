@@ -10,8 +10,8 @@ import comand.play.shootemup.controller.GameView;
 
 public class Player extends GameObject {
     float size = 0.12f;
-    private float fireStatus = 1.0f;
-    private float fireReating = 1.0f;
+    private float fireStatus = 0.5f;
+    private float fireReating = 0.3f;
 
     public Player(Point location) {
         super(location, new Point(0,0));

@@ -4,8 +4,9 @@ package comand.play.shootemup.controller;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import comand.play.shootemup.model.DefaultEnemy;
 import comand.play.shootemup.model.Enemy;
+import comand.play.shootemup.model.EnemyDreadnought;
+import comand.play.shootemup.model.EnemyTest;
 import comand.play.shootemup.model.Point;
 import comand.play.shootemup.model.GameObject;
 import comand.play.shootemup.model.Player;
@@ -72,8 +73,9 @@ public class GameController{
 
         event += Math.sin(points) + 1.0f;
         if (event >= 41.9f) {
-                enemy.add(new DefaultEnemy(new Point((float) Math.random() * (0.9f) + 0.05f, -0.05f)));
-                event =0;
+                //enemy.add(new EnemyDreadnought(new Point((float) Math.random() * (0.9f) + 0.05f, -0.05f), new Point(1, 2), 2));
+                enemy.add(new EnemyTest(new Point((float) Math.random() * (0.9f) + 0.05f, -0.05f)));
+                event = 0;
 
         }
 
@@ -87,6 +89,7 @@ public class GameController{
             }
             else if (obj.getHealth() <= 0){
                 points += 10;
+
             } else if (obj.location.y <= ySize) {
                 newEnemy.add(obj);
             } else {
