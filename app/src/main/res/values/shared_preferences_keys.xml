@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="default_max_point_key">0</integer>
     <string name="max_point_key">max point key</string>
+    <string name="giro_key">giro key</string>
+    <string name="sound_key">sound key</string>
+    <string name="music_key">music key</string>
+    <integer name="default_max_point_key">0</integer>
 </resources>

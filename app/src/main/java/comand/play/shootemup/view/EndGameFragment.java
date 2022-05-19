@@ -33,8 +33,7 @@ public class EndGameFragment extends Fragment {
         TextView maxPointText = (TextView)(view.findViewById(R.id.max_game_point_count_text));
 
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-        int defaultValue = getResources().getInteger(R.integer.default_max_point_key);
-        int maxPoint = sharedPreferences.getInt(getString(R.string.max_point_key), defaultValue);
+        int maxPoint = sharedPreferences.getInt(getString(R.string.max_point_key), 0);
         Log.d("MAX_POINT", maxPoint+"");
         if (maxPoint < lastGamePoint){
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -42,8 +41,8 @@ public class EndGameFragment extends Fragment {
             editor.apply();
             maxPoint = lastGamePoint;
         }
-        pointText.setText("Ваш счет: " + lastGamePoint);
-        maxPointText.setText("Ваш лучший счет: " + maxPoint);
+        pointText.setText(getString(R.string.your_score) + lastGamePoint);
+        maxPointText.setText(getString(R.string.your_best) + maxPoint);
         view.findViewById(R.id.play_again_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

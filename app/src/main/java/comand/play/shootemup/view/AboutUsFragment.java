@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import comand.play.shootemup.R;
+import comand.play.shootemup.controller.GameController;
+import comand.play.shootemup.controller.GameView;
 
 public class AboutUsFragment extends Fragment {
 
@@ -26,9 +28,11 @@ public class AboutUsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about_us, container, false);
         Fragment fragment = this;
+        GameView.gameView.setAboutUs(true);
         view.findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                GameController.gameController.aboutUsOver();
                 MenuFragment menuFragment = new MenuFragment();
                 getFragmentManager().beginTransaction()
                         .remove(fragment)

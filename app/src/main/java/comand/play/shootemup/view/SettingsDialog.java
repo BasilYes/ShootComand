@@ -2,13 +2,17 @@ package comand.play.shootemup.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 
 import android.app.DialogFragment;
 
 import comand.play.shootemup.R;
+import comand.play.shootemup.controller.GameController;
+import comand.play.shootemup.controller.GameView;
 
 public class SettingsDialog extends DialogFragment {
 
@@ -19,11 +23,17 @@ public class SettingsDialog extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final String[] catNamesArray = {"Звуки", "Музыка", "Управление пальцем"};
-        final boolean[] checkedItemsArray = {false, true, false};
+        final String[] catNamesArray =
+                {getString(R.string.sound),
+                        getString(R.string.music),
+                        getString(R.string.finger)};
+        final boolean[] checkedItemsArray = {GameController.playSound,
+                GameController.playMusic,
+                !GameController.useGiro};
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.dialog));
-        builder.setTitle("Настройки")
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(),
+                R.style.dialog));
+        builder.setTitle(getString(R.string.settings))
                 .setMultiChoiceItems(catNamesArray, checkedItemsArray,
                         new DialogInterface.OnMultiChoiceClickListener() {
                             @Override
@@ -32,26 +42,34 @@ public class SettingsDialog extends DialogFragment {
                                 checkedItemsArray[which] = isChecked;
                             }
                         })
-                .setPositiveButton("Готово",
+                .setPositiveButton(getString(R.string.ready),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog,
                                                 int id) {
-//                                StringBuilder state = new StringBuilder();
-//                                for (int i = 0; i < catNamesArray.length; i++) {
-//                                    state.append(catNamesArray[i]);
-//                                    if (checkedItemsArray[i])
-//                                        state.append(" выбран\n");
-//                                    else
-//                                        state.append(" не выбран\n");
-//                                }
-//                                Toast.makeText(getActivity(),
-//                                        state.toString(), Toast.LENGTH_LONG)
-//                                        .show();
+                                GameController.playSound = checkedItemsArray[0];
+                                GameController.playMusic = checkedItemsArray[1];
+                                GameController.useGiro = !checkedItemsArray[2];
+                                SharedPreferences sharedPreferences =
+                                        getActivity().getPreferences(Context.MODE_PRIVATE);
+
+                                if (checkedItemsArray[0])
+                                    GameView.gameView.startSound();
+                                else
+                                    GameView.gameView.stopSound();
+                                if (checkedItemsArray[1])
+                                    GameView.gameView.startMusic();
+                                else
+                                    GameView.gameView.stopMusic();
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putBoolean(getString(R.string.sound_key), checkedItemsArray[0]);
+                                editor.putBoolean(getString(R.string.music_key), checkedItemsArray[1]);
+                                editor.putBoolean(getString(R.string.giro_key), !checkedItemsArray[2]);
+                                editor.apply();
                             }
                         })
 
-                .setNegativeButton("Отмена",
+                .setNegativeButton(getString(R.string.cancel),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog,
