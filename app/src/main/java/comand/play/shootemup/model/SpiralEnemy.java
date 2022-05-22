@@ -18,8 +18,8 @@ public class SpiralEnemy extends Enemy{
 
     public SpiralEnemy(Point location) {
         super(location, new Point(0, 0.5f), 1);
-        if ( location.x > 0.5f)
-            time = 3.14f;
+//        if ( location.x > 0.5f)
+//            time = 3.14f;
     }
 
     @Override
@@ -56,14 +56,15 @@ public class SpiralEnemy extends Enemy{
         Float multiple = GameView.displaySize.x;
         canvas.drawCircle(location.x*multiple, location.y*multiple, size*multiple, paint);
     }
-
+    Random random = new Random();
     @Override
     public void Tick(float deltaTime) {
         super.Tick(deltaTime);
         fireStatus-=deltaTime;
-
+        float A = 0.6f;
         time+=deltaTime;
-        speed.x = (float) Math.sin(time*3.14f) / 2f;
-
+        speed.x = A * (float) Math.sin(time * (float) Math.PI * 2f);
+        speed.y = A * (float) Math.cos(time * (float) Math.PI * 2f);
+        speed.y += 0.4f;
     }
 }

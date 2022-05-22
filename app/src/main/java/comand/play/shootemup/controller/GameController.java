@@ -129,21 +129,19 @@ public class GameController{
         double backChance = (Math.sin(points/1000) + 1)/3;
         double defaultChance = 0.5*(1-backChance)+backChance;
 
-        if (event >= 41.9f) {
+        if (event >= 31.9f) {
                 Double chance = Math.random();
                 if (0.1 <= chance && chance <    0.3){
-                    enemy.add(new EnemyDreadnought(new Point((float) Math.random() * (0.9f) + 0.05f, -0.05f), new Point(1, 2), 2));
+                    enemy.add(new EnemyDreadnought(new Point((float) Math.random() * 0.3f + 0.5f, -0.05f), new Point(1, 2), 2));
                 } else if (0.3 <= chance && chance < 0.6){
-                    enemy.add(new DefaultEnemy(new Point((float) Math.random() * (0.1f) + 0.05f, -0.05f)));
-                    enemy.add(new DefaultEnemy(new Point((float) Math.random() * (0.9f) + 0.05f, -0.05f)));
+                    enemy.add(new DefaultEnemy(new Point((float) Math.random() * (0.2f) + 0.5f, -0.05f)));
+                    enemy.add(new DefaultEnemy(new Point((float) Math.random() * (0.5f) + 0.8f, -0.05f)));
                 } else {
-                    enemy.add(new SpiralEnemy(new Point((float) Math.random() * (0.1f) + 0.1f, -0.05f)));
-                    enemy.add(new SpiralEnemy(new Point((float) Math.random() * (0.5f) + 0.2f, -0.05f)));
-                    enemy.add(new SpiralEnemy(new Point((float) Math.random() * (0.9f) + 0.3f, -0.05f)));
+                    float rnd = (float) Math.random() * 0.1f + 0.6f;
+                    enemy.add(new SpiralEnemy(new Point( rnd, 0.1f)));
+                    enemy.add(new SpiralEnemy(new Point(rnd + 0.2f, -0.05f)));
+                    enemy.add(new SpiralEnemy(new Point(rnd - 0.2f, -0.05f)));
                 }
-
-
-
                 event = 0;
 
         }
@@ -159,6 +157,7 @@ public class GameController{
             else if (obj.getHealth() <= 0){
                 points += 10;
 
+                //TODO: BONUS DROP
             } else if (obj.location.y <= ySize) {
                 newEnemy.add(obj);
             } else {
