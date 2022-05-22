@@ -7,6 +7,8 @@ import java.util.Random;
 
 import comand.play.shootemup.MainActivity;
 import comand.play.shootemup.model.Bonus;
+import comand.play.shootemup.model.BonusBullet;
+import comand.play.shootemup.model.BonusShield;
 import comand.play.shootemup.model.DefaultEnemy;
 import comand.play.shootemup.model.Enemy;
 import comand.play.shootemup.model.EnemyDreadnought;
@@ -118,17 +120,18 @@ public class GameController{
         }
         bonuses = newBonuses;
     }
-
+    float randomF;
     public void Tick() {
         player.Tick(deltaTime);
         addPoints(deltaTime);
-
+        randomF = (float) Math.random() * 0.6f + 0.1f;
         shieldCountdown -= deltaTime;
-
+        if (shieldCountdown < 0f){
+            shieldIn = false;
+        }
         event += (Math.sin(points) + 1.0f)*Math.sqrt(points/100)*0.5;
         double backChance = (Math.sin(points/1000) + 1)/3;
         double defaultChance = 0.5*(1-backChance)+backChance;
-
         if (event >= 31.9f) {
                 Double chance = Math.random();
                 if (0.1 <= chance && chance <    0.3){
@@ -137,15 +140,14 @@ public class GameController{
                     enemy.add(new DefaultEnemy(new Point((float) Math.random() * (0.2f) + 0.5f, -0.05f)));
                     enemy.add(new DefaultEnemy(new Point((float) Math.random() * (0.5f) + 0.8f, -0.05f)));
                 } else {
-                    float rnd = (float) Math.random() * 0.1f + 0.6f;
-                    enemy.add(new SpiralEnemy(new Point( rnd, 0.1f)));
-                    enemy.add(new SpiralEnemy(new Point(rnd + 0.2f, -0.05f)));
-                    enemy.add(new SpiralEnemy(new Point(rnd - 0.2f, -0.05f)));
+                    enemy.add(new SpiralEnemy(new Point(randomF, 0.1f)));
+                    enemy.add(new SpiralEnemy(new Point(randomF + 0.2f, -0.05f)));
+                    enemy.add(new SpiralEnemy(new Point(randomF - 0.2f, -0.05f)));
                 }
                 event = 0;
-
         }
 
+        Random rnd = new Random();
         Iterator<Enemy> enIteraror = enemy.iterator();
         LinkedList<Enemy> newEnemy = new LinkedList<>();
         while (enIteraror.hasNext()){
@@ -156,8 +158,11 @@ public class GameController{
             }
             else if (obj.getHealth() <= 0){
                 points += 10;
-
-                //TODO: BONUS DROP
+                if (rnd.nextGaussian() > 0.5 && obj.getClass() == EnemyDreadnought.class){
+                    bonuses.add(new BonusBullet(obj.location, 0.1f));
+                } else if (obj.getClass() == EnemyDreadnought.class){
+                    bonuses.add(new Bonus(obj.location, 0.1f));
+                }
             } else if (obj.location.y <= ySize) {
                 newEnemy.add(obj);
             } else {
@@ -232,8 +237,8 @@ public class GameController{
         bullet.clear();
         bonuses.clear();
         event = 1050f;
-        //player.bulletCount = 1;
-        //player.fireReating = 1;
+        player.bulletCount = 1;
+        player.fireRating = 0.45f;
         addBullTimer = BULL_TIMER_INIT;
         gameView.statsFragment.gameOver((int)points);
         gameView.setOnGame(false);
@@ -241,7 +246,7 @@ public class GameController{
     }
 
     private void addDamage(){
-        //if (!player.shield)
+        if (!shieldIn)
             health--;
     }
 }

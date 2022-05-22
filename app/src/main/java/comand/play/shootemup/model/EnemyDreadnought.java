@@ -10,8 +10,8 @@ import comand.play.shootemup.controller.GameView;
 
 public class EnemyDreadnought extends Enemy{
     float size = 0.14f;
-    private float fireStatus = 0.5f;
-    private float fireReating = 1f;
+    private float fireStatus = 0.8f;
+    private float fireReating = 1.4f;
 
     public EnemyDreadnought(Point location, Point speed, int health) {
         super(location, speed, health);
