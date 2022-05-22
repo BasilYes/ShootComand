@@ -21,7 +21,7 @@ public class BonusShield extends Bonus{
 
     @Override
     public void getBonus() {
-        GameView.gameView.playSound(1);
+        GameView.gameView.openSound(3);
         GameController.gameController.shieldCountdown = 5.0f*
                 GameController.gameController.getDeltaTimeMultiple();
         GameController.gameController.shieldIn = false;

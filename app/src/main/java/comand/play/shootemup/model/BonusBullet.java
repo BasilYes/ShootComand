@@ -20,7 +20,7 @@ public class BonusBullet extends Bonus{
 
     @Override
     public void getBonus() {
-        GameView.gameView.playSound(1);
+        GameView.gameView.openSound(2);
         GameController.player.bulletCount++;
         switch (GameController.player.bulletCount){
             case 2:

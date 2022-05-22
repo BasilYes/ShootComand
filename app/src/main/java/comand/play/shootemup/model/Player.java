@@ -1,5 +1,7 @@
 package comand.play.shootemup.model;
 
+import static comand.play.shootemup.controller.GameView.openSound;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -12,7 +14,7 @@ public class Player extends GameObject {
     public int bulletCount = 1;
     float size = 0.12f;
     private float fireStatus = 0.4f;
-    private float fireReating = 0.3f;
+    private float fireReating = 0.45f;
 
     public Player(Point location) {
         super(location, new Point(0,0));
@@ -83,6 +85,7 @@ public class Player extends GameObject {
                             new Point(location.x, location.y-size*0.65f),
                             new Point(0,bulletStatus)
                             , bSize, true));
+                    openSound(0);
                     break;
                 case 2:
                     GameController.bullet.add(new Bullet(

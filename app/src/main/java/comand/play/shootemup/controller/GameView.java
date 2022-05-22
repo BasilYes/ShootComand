@@ -42,8 +42,8 @@ public class GameView extends View {
 
     private boolean aboutUs = false;
     private MediaPlayer mediaPlayer = null;
-    private SoundPool soundPool = null;
-    private int[] soundList = null;
+    private static SoundPool soundPool = null;
+    private static int[] soundList = null;
     public void setOnGame(boolean onGame) {
         this.onGame = onGame;
         gameController.health = 4;
@@ -241,8 +241,10 @@ public class GameView extends View {
                     .setAudioAttributes(audioAttributes)
                     .build();
             soundList =  new int[]{
-/////////////////////////////////////////////////////////                    soundPool.load(getContext(), R.raw.shoot, 1),
-/////////////////////////////////////////////////////////                    soundPool.load(getContext(), R.raw.bonus, 1),
+                    soundPool.load(getContext(), R.raw.fire1, 1), //0
+                    soundPool.load(getContext(), R.raw.fire2, 1), //1
+                    soundPool.load(getContext(), R.raw.bulletbonus, 1), //2
+                    soundPool.load(getContext(), R.raw.shieldbonus, 1) //3
             };
             Log.d("SoundTest", "  ");
         }
@@ -254,7 +256,7 @@ public class GameView extends View {
             soundList = null;
         }
     }
-    public void playSound(int id){
+    public static void openSound(int id){
         if (soundList!=null)
             if (GameController.playSound)
                 soundPool.play(soundList[id], 1, 1, 0, 0, 1);
