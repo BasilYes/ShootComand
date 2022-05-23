@@ -8,7 +8,6 @@ import java.util.Random;
 import comand.play.shootemup.MainActivity;
 import comand.play.shootemup.model.Bonus;
 import comand.play.shootemup.model.BonusBullet;
-import comand.play.shootemup.model.BonusShield;
 import comand.play.shootemup.model.DefaultEnemy;
 import comand.play.shootemup.model.Enemy;
 import comand.play.shootemup.model.EnemyDreadnought;
@@ -19,6 +18,12 @@ import comand.play.shootemup.model.Player;
 import comand.play.shootemup.model.Sprite;
 import comand.play.shootemup.model.Star;
 
+
+/**
+ * Класс GameController отвечает за внутриигровую логику.
+ * @author Василий Реуков, Бугров Егор
+ * @version 2.0
+ */
 public class GameController{
     static public GameView gameView;
     static public GameController gameController;
@@ -41,8 +46,8 @@ public class GameController{
     public final float BULL_SPEED_TIMER_INIT = 150.0f;
     public float addBullSpeedTimer = BULL_SPEED_TIMER_INIT;
     public int health;
-    public float shieldCountdown = 0;
-    public boolean shieldIn = false;
+//    public float shieldCountdown = 0;
+//    public boolean shieldIn = false;
     public Point input;
 
     public static boolean useGiro = false;
@@ -56,12 +61,24 @@ public class GameController{
     public static LinkedList<Bonus> bonuses = new LinkedList<>();
     public static LinkedList<GameObject> stars = new LinkedList<>();
 
+    /**
+     * Метод addPoints отвечает за контроль начисления очков
+     * и увелечение скорости игры.
+     * @param points
+     */
     public void addPoints(float points){
         this.points += points;
         addBullTimer -= points;
         addBullSpeedTimer -= points;
     }
 
+    /**
+     * Конструктор GameController отвечает за привязку к классу GameView и текущей активности.
+     * @see GameView
+     * @see MainActivity
+     * @param gameView
+     * @param activity
+     */
     public GameController(GameView gameView, MainActivity activity){
         GameController.gameView = gameView;
         gameController = this;
@@ -78,6 +95,9 @@ public class GameController{
         }
     }
 
+    /**
+     * Метод updateDeltaTime обновляет значение поля deltaTime и устанавливает новое время.
+     */
     public void updateDeltaTime()
     {
         long newTime = System.nanoTime();
@@ -86,6 +106,9 @@ public class GameController{
         time = newTime;
     }
 
+    /**
+     * Метод starTick отвечает, за обработку звезд.
+     */
     public void starTick()
     {
         for (GameObject obj : stars) {
@@ -99,6 +122,9 @@ public class GameController{
 
     double event = 1050f;
 
+    /**
+     * Метод aboutUsTick отвечает, за обработку выпадения ссылок в меню "О Нас".
+     */
     public void aboutUsTick(){
         event += deltaTime*10.0f;
         if (event >= 1050.0f) {
@@ -121,14 +147,18 @@ public class GameController{
         bonuses = newBonuses;
     }
     float randomF;
+
+    /**
+     * Метод Tick обрабатывает все происхожящие события в игре на каждый тик времени.
+     */
     public void Tick() {
         player.Tick(deltaTime);
         addPoints(deltaTime);
         randomF = (float) Math.random() * 0.6f + 0.1f;
-        shieldCountdown -= deltaTime;
-        if (shieldCountdown < 0f){
-            shieldIn = false;
-        }
+//        shieldCountdown -= deltaTime;
+//        if (shieldCountdown < 0f){
+//            shieldIn = false;
+//        }
         event += (Math.sin(points) + 1.0f)*Math.sqrt(points/100)*0.5;
         double backChance = (Math.sin(points/1000) + 1)/3;
         double defaultChance = 0.5*(1-backChance)+backChance;
@@ -224,12 +254,18 @@ public class GameController{
             gameOver();
     }
 
+    /**
+     * Метод aboutUsOver отвечает за очистку элементов, вызванных на экране "О нас".
+     */
     public void aboutUsOver(){
         bonuses.clear();
         event = 1050f;
         gameView.setAboutUs(false);
     }
 
+    /**
+     * Метод gameOver отвечает за сброс данных, после проигрыша.
+     */
     private void gameOver()
     {
         enemy.clear();
@@ -245,8 +281,11 @@ public class GameController{
         points = 0.0f;
     }
 
+    /**
+     * Метод addDamage отвечает за обработку получения урона игроком.
+     */
     private void addDamage(){
-        if (!shieldIn)
+//        if (!shieldIn)
             health--;
     }
 }

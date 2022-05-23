@@ -10,17 +10,32 @@ import android.graphics.Path;
 import comand.play.shootemup.controller.GameController;
 import comand.play.shootemup.controller.GameView;
 
+/**
+ * Класс Player наследуется от GameObject и представляет собой данные игрока.
+ * @author Василий Реуков, Бугров Егор, Полина Лесневская
+ * @version 2.1
+ * @see GameObject
+ */
 public class Player extends GameObject {
-    public static boolean shield = false;
+    //public static boolean shield = false;
     public int bulletCount = 1;
     float size = 0.12f;
     private float fireStatus = 0.4f;
     public float fireRating = 0.45f;
 
+    /**
+     * Конструктор класса Player, вызывает super-конструктор для установления координат и скорости.
+     * @param location
+     */
     public Player(Point location) {
         super(location, new Point(0,0));
     }
 
+    /**
+     * Метод isPointInside нужен для проверки соприкосновения точки Игрока с другими объектами.
+     * @param point
+     * @return
+     */
     @Override
     public boolean isPointInside(Point point) {
         return -1.5*(point.x - location.x) - size*0.65f < point.y - location.y &&
@@ -29,6 +44,11 @@ public class Player extends GameObject {
                 -0.666666f*(point.x - location.x) + size*0.65f > point.y - location.y;
     }
 
+    /**
+     * Метод isCollision нужен для проверки соприкосновения объекта Игрока с другими объектами.
+     * @param collision
+     * @return
+     */
     @Override
     public boolean isCollision(GameObject collision) {
         Point[] points = collision.getPoints();
@@ -40,6 +60,10 @@ public class Player extends GameObject {
         return false;
     }
 
+    /**
+     * Метод getPoints нужен для получения координат Игрока.
+     * @return
+     */
     @Override
     public Point[] getPoints() {
         return new Point[]{
@@ -50,6 +74,11 @@ public class Player extends GameObject {
         };
     }
 
+    /**
+     * Метод Draw нужен для отрисовки графики корабля Игрока.
+     * @param canvas
+     * @param paint
+     */
     @Override
     public void Draw(Canvas canvas, Paint paint) {
         float multiple = GameView.displaySize.x;
@@ -71,6 +100,10 @@ public class Player extends GameObject {
         canvas.drawPath(path,paint);
     }
 
+    /**
+     * Метод Tick вызывает super-метод Tick и описывает логику Игрока в тик времени.
+     * @param deltaTime
+     */
     @Override
     public void Tick(float deltaTime) {
         super.Tick(deltaTime);
@@ -162,7 +195,9 @@ public class Player extends GameObject {
             }
             }
         }
-
+    /**
+     * Метод moveTo перемещает игрока к выбранным координатам.
+     */
     public void moveTo(float x, float y)
     {
         location.x = x;

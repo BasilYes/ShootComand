@@ -8,15 +8,31 @@ import android.graphics.Path;
 import comand.play.shootemup.controller.GameController;
 import comand.play.shootemup.controller.GameView;
 
+/**
+ * Класс DefaultEnemy наследуется от класса Enemy и представляет собой базового врага в игре.
+ * @author Василий Реуков, Полина Лесневская
+ * @version 1.1
+ * @see Enemy
+ */
 public class DefaultEnemy extends Enemy{
     float size = 0.09f;
     float fireReating = 1.5f;
     float fireStatus = 0.0f;
 
+    /**
+     * Конструктор класса DefaultEnemy вызывает super-конструктор класса Enemy для установки
+     * координат,скорости и здоровья.
+     * @param location
+     */
     public DefaultEnemy(Point location) {
         super(location, new Point(0, 0.8f), 1);
     }
 
+    /**
+     * Метод isPointInside проверяет соприкосновение точки врага с точкой Игрока.
+     * @param point
+     * @return
+     */
     @Override
     public boolean isPointInside(Point point) {
         return -2*(point.x - location.x) + size > point.y - location.y &&
@@ -25,6 +41,11 @@ public class DefaultEnemy extends Enemy{
                 -(point.x - location.x) - size*0.5f < point.y - location.y;
     }
 
+    /**
+     * Метод isCollision проверяет соприкосновение объекта врага с объектом Игрок.
+     * @param collision
+     * @return
+     */
     @Override
     public boolean isCollision(GameObject collision) {
         Point[] points = collision.getPoints();
@@ -36,6 +57,10 @@ public class DefaultEnemy extends Enemy{
         return false;
     }
 
+    /**
+     * Метод getPonits возвращает координаты врага.
+     * @return
+     */
     @Override
     public Point[] getPoints() {
         //return new Point[]{location};
@@ -47,6 +72,11 @@ public class DefaultEnemy extends Enemy{
         };
     }
 
+    /**
+     * Метод Draw отрисовывает графику врага.
+     * @param canvas
+     * @param paint
+     */
     @Override
     public void Draw(Canvas canvas, Paint paint) {
         paint.setColor(Color.argb(255,250,196,196));
@@ -68,6 +98,10 @@ public class DefaultEnemy extends Enemy{
         canvas.drawPath(path,paint);
     }
 
+    /**
+     * Метод Tick вызывает super-метод Tick и устаналивает механизм движения врага.
+     * @param deltaTime
+     */
     @Override
     public void Tick(float deltaTime) {
         super.Tick(deltaTime);

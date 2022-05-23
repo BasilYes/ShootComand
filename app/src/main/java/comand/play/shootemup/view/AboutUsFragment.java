@@ -12,17 +12,37 @@ import comand.play.shootemup.R;
 import comand.play.shootemup.controller.GameController;
 import comand.play.shootemup.controller.GameView;
 
+/**
+ * Класс AboutUsFragment наследуется от класса Fragment и представляет себе отображение информации
+ * в окне "О нас".
+ * @author Василий Реуков
+ * @version 1.0
+ * @see androidx.fragment.app.Fragment
+ */
 public class AboutUsFragment extends Fragment {
-
+    /**
+     * Пустой конструктор класса AboutUsFragment.
+     */
     public AboutUsFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Метод onCreate вызывает super-метод класса Fragment.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Метод onCreateView связывает поля разметки с действиями Игрока.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -26,6 +26,12 @@ import comand.play.shootemup.model.Point;
 import comand.play.shootemup.view.StatsFragment;
 import comand.play.shootemup.model.GameObject;
 
+/**
+ * Класс GameView отвечает за обработку основной графики игры. Наследуется от класса View.
+ * @author Василий Реуков
+ * @version 1.0
+ * @see View
+ */
 public class GameView extends View {
 
     static public GameView gameView;
@@ -36,6 +42,10 @@ public class GameView extends View {
     public MainActivity activity;
     private boolean onGame = false;
 
+    /**
+     * Метод setAboutUs сеттер для поля aboutUs.
+     * @param aboutUs
+     */
     public void setAboutUs(boolean aboutUs) {
         this.aboutUs = aboutUs;
     }
@@ -44,11 +54,25 @@ public class GameView extends View {
     private MediaPlayer mediaPlayer = null;
     private static SoundPool soundPool = null;
     private static int[] soundList = null;
+
+    /**
+     * Метод setOnGame сеттер для поля onGame и уровня здоровья в контроллере.
+     * @param onGame
+     */
     public void setOnGame(boolean onGame) {
         this.onGame = onGame;
         gameController.health = 4;
     }
 
+    /**
+     * Конструктор класса GameView. Связывается с главной активностью, игровым контроллером,
+     * устанавливает основной способ передвижения корабля, возможность управления через
+     * гироскоп, а также запускает все игровые обработчики тиков.
+     * @see MainActivity
+     * @see GameController
+     * @see SensorManager
+     * @param context
+     */
     public GameView(Context context) {
         super(context);
         activity = (MainActivity)context;
@@ -120,6 +144,10 @@ public class GameView extends View {
         }.start();
     }
 
+    /**
+     * Метод onDraw занимается отрисовкой всех объектов на экране.
+     * @param canvas
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -181,32 +209,12 @@ public class GameView extends View {
                 }
                 x += s * 5;
             }
-//            while (lives > 0) {
-//                paint.setColor(Color.argb(255, 217, 82, 82));
-//                Path path = new Path();
-//                path.moveTo((x + s) * multiple, y * multiple);
-//                path.lineTo(x * multiple, (y + s) * multiple);
-//                path.lineTo((x + s * 2) * multiple, (y + s * 4) * multiple);
-//                path.lineTo((x + s * 2) * multiple, (y + s * 2) * multiple);
-//                path.lineTo((x + s) * multiple, y * multiple);
-//                path.close();
-//                canvas.drawPath(path, paint);
-//                lives--;
-//                if (lives > 0) {
-//                    paint.setColor(Color.argb(255, 234, 112, 112));
-//                    path = new Path();
-//                    path.moveTo((x + s * 2) * multiple, (y + s * 4) * multiple);
-//                    path.lineTo((x + s * 2) * multiple, (y + s * 2) * multiple);
-//                    path.lineTo((x + s * 3) * multiple, y * multiple);
-//                    path.lineTo((x + s * 4) * multiple, (y + s * 2) * multiple);
-//                    path.close();
-//                    canvas.drawPath(path, paint);
-//                    lives--;
-//                }
-//                x += s * 5;
-//            }
         }
     }
+
+    /**
+     * Метод startMusic включает саундтрек игры.
+     */
     public void startMusic(){
         if(mediaPlayer == null){
             mediaPlayer = MediaPlayer.create(getContext(), R.raw.soundtrack);
@@ -214,22 +222,38 @@ public class GameView extends View {
             mediaPlayer.start();
         }
     }
+
+    /**
+     * Метод stopMusic выключает саундтрек игры.
+     */
     public void stopMusic(){
         if (mediaPlayer!=null){
             mediaPlayer.release();
             mediaPlayer = null;
         }
     }
+
+    /**
+     * Метод pauseMusic ставит музыку на паузу.
+     */
     public void pauseMusic(){
         if (mediaPlayer!=null){
             mediaPlayer.pause();
         }
     }
+
+    /**
+     * Метод unpauseMusic снимает музыку с паузы.
+     */
     public void unpauseMusic(){
         if (mediaPlayer!=null){
             mediaPlayer.start();
         }
     }
+
+    /**
+     * Метод startSound устанавливает потоки звуков и связывает их со значениями из soundPool.
+     */
     public void startSound(){
         if (soundList==null){
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
@@ -249,6 +273,10 @@ public class GameView extends View {
             Log.d("SoundTest", "  ");
         }
     }
+
+    /**
+     * Метод stopSound отключает звуки игры.
+     */
     public void stopSound(){
         if (soundList!=null) {
             soundPool.release();
@@ -256,6 +284,11 @@ public class GameView extends View {
             soundList = null;
         }
     }
+
+    /**
+     * Метод openSound позволяет запустить конкретный звук из любого места кода.
+     * @param id
+     */
     public static void openSound(int id){
         if (soundList!=null)
             if (GameController.playSound)

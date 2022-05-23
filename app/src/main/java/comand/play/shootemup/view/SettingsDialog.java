@@ -14,13 +14,23 @@ import comand.play.shootemup.R;
 import comand.play.shootemup.controller.GameController;
 import comand.play.shootemup.controller.GameView;
 
+/**
+ * Класс SettingsDialog наследуется от класса DialogFragment и представляет собой отображение
+ * экрана "Настройки".
+ * @author Василий Реуков
+ * @version 1.0
+ * @see DialogFragment
+ */
 public class SettingsDialog extends DialogFragment {
 
     public static String TAG = "dialog_tag";
-    //Java
 
-
-
+    /**
+     * Класс onCreateDialog отвечает за привязку полей разметки к действиям Игрока в меню
+     * "Настройки".
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final String[] catNamesArray =

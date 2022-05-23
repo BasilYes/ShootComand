@@ -13,9 +13,22 @@ import comand.play.shootemup.controller.GameController;
 import comand.play.shootemup.controller.GameView;
 import comand.play.shootemup.view.MenuFragment;
 
+/**
+ * Класс MainActivity наследуется от класса Activity и представляет собой главное явление в
+ * приложении.
+ * @author Василий Реуков
+ * @version 1.0
+ * @see Activity
+ */
 public class MainActivity extends Activity {
     public SensorManager sensorManager;
     public Sensor sensor;
+
+    /**
+     * Метод onCreate задает для GameView доступ к классу SensorManager, устанавливает начальный
+     * экран, включает игровой HUD, включает звуки, музыку и управление гироскопм.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +59,9 @@ public class MainActivity extends Activity {
         }
     }
 
+    /**
+     * Метод onPause останавливает музыку и звуки при переходе игры на фон.
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -53,6 +69,10 @@ public class MainActivity extends Activity {
         GameView.gameView.stopSound();
     }
 
+    /**
+     * Метод onResume проверяет настройки игры и запускает разрешенные музыку и звуки при
+     * возвращении в игру.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -62,6 +82,9 @@ public class MainActivity extends Activity {
             GameView.gameView.startSound();
     }
 
+    /**
+     * Метод onStop останавливает музыку и звуки при остановке игры.
+     */
     @Override
     protected void onStop() {
         super.onStop();

@@ -7,31 +7,59 @@ import android.graphics.Paint;
 import comand.play.shootemup.controller.GameController;
 import comand.play.shootemup.controller.GameView;
 
+/**
+ * Класс Bonus наследуется от класса GameObject и представляет собой классический вариант бонуса
+ * с восстановлением здоровья (БЗ).
+ * @author Василий Реуков, Полина Лесневская
+ * @version 1.1
+ * @see GameObject
+ */
 public class Bonus extends GameObject{
     float size;
+
+    /**
+     * Конструктор класса Bonus вызывает super-конструктор для установки координат и скорости,
+     * а также задает размер.
+     * @param location
+     * @param size
+     */
     public Bonus(Point location, float size) {
         super(location, new Point(0, 0.5f));
         this.size = size;
     }
-
+    /**
+     * Метод isPointInside проверяет соприкосновение точек БЗ с Игроком.
+     */
     @Override
     public boolean isPointInside(Point point) {
         float x = (point.x- location.x);
         float y = (point.y- location.y);
         return x*x + y*y < size*size;
     }
-
+    /**
+     * Метод isCollision всегда возвращает false.
+     */
     @Override
     public boolean isCollision(GameObject collision) {
         return false;
     }
 
+    /**
+     * Метод getBonus восстаналивает здоровье Игрока.
+     */
     public void getBonus(){
         GameController.gameController.health++;
     }
 
+    /**
+     * Метод bonusDestroyed вызывается при уничтожении бонуса
+     */
     public void bonusDestroyed(){}
 
+    /**
+     * Метод getPoints возвращает координаты Бонуса.
+     * @return
+     */
     @Override
     public Point[] getPoints() {
         return new Point[]{
@@ -46,6 +74,11 @@ public class Bonus extends GameObject{
         };
     }
 
+    /**
+     * Метод Draw отрисовывает графику БЗ.
+     * @param canvas
+     * @param paint
+     */
     @Override
     public void Draw(Canvas canvas, Paint paint) {
         paint.setColor(Color.argb(255, 255, 0, 255));

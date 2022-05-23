@@ -6,7 +6,21 @@ import android.graphics.Paint;
 
 import comand.play.shootemup.controller.GameView;
 
+/**
+ * Класс Bullet наследуетя от класса GameObject и хранит в себе данные о снарядах.
+ * @author Василий Реуков, Полина Лесневская
+ * @version 1.1
+ * @see GameObject
+ */
 public class Bullet extends GameObject{
+    /**
+     * Конструктор класса Bullet, задает размер и приндлежность игрок/враг. Вызывает super констр
+     * уктор класса GameObject.
+     * @param location
+     * @param speed
+     * @param size
+     * @param friend
+     */
     public Bullet(Point location, Point speed, Float size, boolean friend) {
         super(location, speed);
         this.size = size;
@@ -16,16 +30,30 @@ public class Bullet extends GameObject{
     float size = 0.02f;
     boolean friend;
 
+    /**
+     * Метод isPointInside всегда возвращает false.
+     * @param point
+     * @return
+     */
     @Override
     public boolean isPointInside(Point point) {
         return false;
     }
 
+    /**
+     * Метод isCollision всегда возвращает false.
+     * @param collision
+     * @return
+     */
     @Override
     public boolean isCollision(GameObject collision) {
         return false;
     }
 
+    /**
+     * Метод getPoints возвращает текущие координаты пули.
+     * @return
+     */
     @Override
     public Point[] getPoints() {
         return new Point[]{
@@ -34,6 +62,11 @@ public class Bullet extends GameObject{
         };
     }
 
+    /**
+     * Метод Draw отрисовывает графику пули.
+     * @param canvas
+     * @param paint
+     */
     @Override
     public void Draw(Canvas canvas, Paint paint) {
         if(friend)
@@ -48,6 +81,10 @@ public class Bullet extends GameObject{
                 paint);
     }
 
+    /**
+     * Метод Tick вызывает super метод Tick и передет ему параметр deltaTime
+     * @param deltaTime
+     */
     @Override
     public void Tick(float deltaTime) {
         super.Tick(deltaTime);

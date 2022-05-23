@@ -14,16 +14,38 @@ import android.widget.TextView;
 
 import comand.play.shootemup.R;
 
+/**
+ * Класс EndGameFragment наследуется от класса Fragment и представляет собой отображение информации
+ * на экране "Конец игры".
+ * @author Васлий Реуков
+ * @version 1.0
+ * @see androidx.fragment.app.Fragment
+ */
 public class EndGameFragment extends Fragment {
     public int lastGamePoint;
+
+    /**
+     * Пустой конструктор класса EndGameFragment
+     */
     public EndGameFragment() {
     }
 
+    /**
+     * Метод onCreate вызывает super-метод Fragment.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Метод onCreateView связывает поля разметки с информацией из контроллера.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -11,25 +11,39 @@ import android.net.Uri;
 import comand.play.shootemup.R;
 import comand.play.shootemup.controller.GameView;
 
+/**
+ * Класс Sprite наследуется от класса Bonus и пресдтавляет собой иконки для экрана "О нас".
+ * @author Василий Реуков
+ * @version 1.0
+ * @see Bonus
+ */
 public class Sprite extends Bonus{
 
     static private int last_id;
     static private final String[] urls = {
-            "https://vk.com/mirea_official",
-            "https://github.com/"
+            "https://github.com/BasilYes/ShootComand"
     };
     static private final int[] drawableIds = {
-//            R.drawable.vk,
-//            R.drawable.github
+           R.drawable.github
     };
     private int id;
 
+    /**
+     * Конструктор класса Sprite вызывает super-конструктор класса Bonus для установки координат и
+     * скорости иконки. А потом вызывает смещение на случайную координату и присваивает id для
+     * перехода по ссылке.
+     */
     public Sprite() {
         super(new Point(), (float)(Math.random()*0.05+0.1));
         location = new Point((float) Math.random()*(1.0f-size), -size);
         id = (last_id++)%urls.length;
     }
 
+    /**
+     * Метод isPointInside проверяет соприкосновение точки иконки с точкой Игрока.
+     * @param point
+     * @return
+     */
     @Override
     public boolean isPointInside(Point point) {
         return point.x > location.x &&
@@ -38,17 +52,27 @@ public class Sprite extends Bonus{
                 point.y < location.y+size;
     }
 
+    /**
+     * Метод getBonus вызывает намерение перехода по ссылке.
+     */
     @Override
     public void getBonus() {
         GameView.gameView.activity.startActivity(
                 new Intent(Intent.ACTION_VIEW, Uri.parse(urls[id])));
     }
 
+    /**
+     * Метод bonusDestroyed вызывается при уничтожении иконки.
+     */
     @Override
     public void bonusDestroyed() {
 
     }
 
+    /**
+     * Метод getPoints возвращает координаты иконки.
+     * @return
+     */
     @Override
     public Point[] getPoints() {
         return new Point[]{
@@ -59,6 +83,11 @@ public class Sprite extends Bonus{
         };
     }
 
+    /**
+     * Метод Draw отрисосвывает графику иконки.
+     * @param canvas
+     * @param paint
+     */
     @Override
     public void Draw(Canvas canvas, Paint paint) {
         Bitmap image = BitmapFactory.decodeResource(GameView.gameView.activity.getResources()

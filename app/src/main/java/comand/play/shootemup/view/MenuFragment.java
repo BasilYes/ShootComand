@@ -11,15 +11,36 @@ import android.view.ViewGroup;
 
 import comand.play.shootemup.R;
 
+/**
+ * Класс MenuFragment наследуется от класса Fragment и представляет собой отображение информации
+ * на экране "Меню".
+ * @author Василий Реуков
+ * @version 1.0
+ * @see androidx.fragment.app.Fragment
+ */
 public class MenuFragment extends Fragment {
+    /**
+     * Пустой конструктор класса MenuFragment.
+     */
     public MenuFragment() {
     }
 
+    /**
+     * Метод onCreate вызывает super-метод класса Fragment.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Метод onCreateView отвечает за привязку полей разметки к действиям Игрока в "Меню".
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
