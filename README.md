@@ -11,7 +11,7 @@ Shoot Command это мобильная игра в жанре __shoot 'em up__ 
 # Система сборки проекта
 ## Зависимости проекта
 Для работы проекта необходимо добавить в __build.Gradle__ следующие зависимости:
-'''
+```
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'
@@ -21,7 +21,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
-'''
+```
 ## Команда запуска
 Для установки __apk__ файла можно использовать __ADB__:
-'adb install C:'Ваш путь до приложения'\Shootemup\app\build\intermediates\apk\debug\app-debug.apk'
+```
+adb install C:'Ваш путь до приложения'\Shootemup\app\build\intermediates\apk\debug\app-debug.apk
+```
