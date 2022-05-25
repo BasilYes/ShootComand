@@ -83,6 +83,14 @@ public class Bonus extends GameObject{
     public void Draw(Canvas canvas, Paint paint) {
         paint.setColor(Color.argb(255, 255, 0, 255));
         float multiple = GameView.displaySize.x;
-        canvas.drawCircle(location.x*multiple, location.y*multiple, size*multiple, paint);
+        paint.setColor(Color.argb(255, 217, 82, 82));
+        Path path = new Path();
+        path.moveTo((location.x + size) * multiple, location.y * multiple);
+        path.lineTo(location.x * multiple, (location.y + size) * multiple);
+        path.lineTo((location.x + size * 2) * multiple, (location.y + size * 4) * multiple);
+        path.lineTo((location.x + size * 2) * multiple, (location.y + size) * multiple);
+        path.lineTo((location.x + size) * multiple, location.y * multiple);
+        path.close();
+        canvas.drawPath(path, paint);
     }
 }
