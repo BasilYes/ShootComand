@@ -32,7 +32,7 @@ public class Player extends GameObject {
     }
 
     /**
-     * Метод isPointInside нужен для проверки соприкосновения точки Игрока с другими объектами.
+     * Метод isPointInside нужен для проверки соприкосновения точки игрока с другими объектами.
      * @param point
      * @return
      */
@@ -45,7 +45,7 @@ public class Player extends GameObject {
     }
 
     /**
-     * Метод isCollision нужен для проверки соприкосновения объекта Игрока с другими объектами.
+     * Метод isCollision нужен для проверки соприкосновения объекта мгрока с другими объектами.
      * @param collision
      * @return
      */
@@ -61,7 +61,7 @@ public class Player extends GameObject {
     }
 
     /**
-     * Метод getPoints нужен для получения координат Игрока.
+     * Метод getPoints нужен для получения координат игрока.
      * @return
      */
     @Override
@@ -75,7 +75,7 @@ public class Player extends GameObject {
     }
 
     /**
-     * Метод Draw нужен для отрисовки графики корабля Игрока.
+     * Метод Draw нужен для отрисовки графики корабля игрока.
      * @param canvas
      * @param paint
      */
@@ -101,7 +101,7 @@ public class Player extends GameObject {
     }
 
     /**
-     * Метод Tick вызывает super-метод Tick и описывает логику Игрока в тик времени.
+     * Метод Tick вызывает super-метод Tick и описывает логику игрока в тик времени.
      * @param deltaTime
      */
     @Override

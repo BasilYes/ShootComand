@@ -40,7 +40,7 @@ public class Sprite extends Bonus{
     }
 
     /**
-     * Метод isPointInside проверяет соприкосновение точки иконки с точкой Игрока.
+     * Метод isPointInside проверяет соприкосновение точки иконки с точкой игрока.
      * @param point
      * @return
      */

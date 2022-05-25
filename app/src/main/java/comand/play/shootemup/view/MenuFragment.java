@@ -35,7 +35,7 @@ public class MenuFragment extends Fragment {
     }
 
     /**
-     * Метод onCreateView отвечает за привязку полей разметки к действиям Игрока в "Меню".
+     * Метод onCreateView отвечает за привязку полей разметки к действиям игрока в "Меню".
      * @param inflater
      * @param container
      * @param savedInstanceState

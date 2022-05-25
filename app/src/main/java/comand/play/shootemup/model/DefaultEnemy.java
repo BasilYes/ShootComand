@@ -29,7 +29,7 @@ public class DefaultEnemy extends Enemy{
     }
 
     /**
-     * Метод isPointInside проверяет соприкосновение точки врага с точкой Игрока.
+     * Метод isPointInside проверяет соприкосновение точки врага с точкой игрока.
      * @param point
      * @return
      */
@@ -42,7 +42,7 @@ public class DefaultEnemy extends Enemy{
     }
 
     /**
-     * Метод isCollision проверяет соприкосновение объекта врага с объектом Игрок.
+     * Метод isCollision проверяет соприкосновение объекта врага с объектом игрок.
      * @param collision
      * @return
      */

@@ -28,7 +28,7 @@ public class Bonus extends GameObject{
         this.size = size;
     }
     /**
-     * Метод isPointInside проверяет соприкосновение точек БЗ с Игроком.
+     * Метод isPointInside проверяет соприкосновение точек БЗ с игроком.
      */
     @Override
     public boolean isPointInside(Point point) {
@@ -45,7 +45,7 @@ public class Bonus extends GameObject{
     }
 
     /**
-     * Метод getBonus восстаналивает здоровье Игрока.
+     * Метод getBonus восстаналивает здоровье игрока.
      */
     public void getBonus(){
         GameController.gameController.health++;

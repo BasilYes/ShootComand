@@ -37,7 +37,7 @@ public class AboutUsFragment extends Fragment {
     }
 
     /**
-     * Метод onCreateView связывает поля разметки с действиями Игрока.
+     * Метод onCreateView связывает поля разметки с действиями игрока.
      * @param inflater
      * @param container
      * @param savedInstanceState

@@ -26,7 +26,7 @@ public class SettingsDialog extends DialogFragment {
     public static String TAG = "dialog_tag";
 
     /**
-     * Класс onCreateDialog отвечает за привязку полей разметки к действиям Игрока в меню
+     * Класс onCreateDialog отвечает за привязку полей разметки к действиям игрока в меню
      * "Настройки".
      * @param savedInstanceState
      * @return

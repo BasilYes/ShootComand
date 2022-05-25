@@ -34,7 +34,7 @@ public class SpiralEnemy extends Enemy{
     }
 
     /**
-     * Метод isPointInside проверяет соприкосновение точки Светлячка с точкой Игрока.
+     * Метод isPointInside проверяет соприкосновение точки Светлячка с точкой игрока.
      * @param point
      * @return
      */
@@ -46,7 +46,7 @@ public class SpiralEnemy extends Enemy{
     }
 
     /**
-     * Метод isCollision проверяет соприкосновение объекта Светлячка с объектом Игрок.
+     * Метод isCollision проверяет соприкосновение объекта Светлячка с объектом игрок.
      * @param collision
      * @return
      */

@@ -35,7 +35,7 @@ public class StatsFragment extends Fragment {
     }
 
     /**
-     * Метод onCreateView отвечает за привязку полей разметки к очкам Игрока.
+     * Метод onCreateView отвечает за привязку полей разметки к очкам игрока.
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -52,7 +52,7 @@ public class StatsFragment extends Fragment {
     }
 
     /**
-     * Метод gameOver отвчеает за движение очков после смерти Игрока.
+     * Метод gameOver отвчеает за движение очков после смерти игрока.
      * @param points
      */
     public void gameOver(int points){
