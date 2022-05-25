@@ -3,6 +3,7 @@ package comand.play.shootemup.model;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 
 import comand.play.shootemup.controller.GameController;
 import comand.play.shootemup.controller.GameView;
