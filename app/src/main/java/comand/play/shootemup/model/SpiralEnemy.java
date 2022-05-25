@@ -17,7 +17,7 @@ import comand.play.shootemup.controller.GameView;
  * @see Enemy
  */
 public class SpiralEnemy extends Enemy{
-    float size = 0.05f;
+    float size = 0.0500f;
     float fireReating = 1.0f;
     float fireStatus = 0.0f;
     float time = 0.0f;

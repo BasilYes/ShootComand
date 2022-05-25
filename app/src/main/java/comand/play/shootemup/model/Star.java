@@ -17,7 +17,7 @@ public class Star extends GameObject {
 
     /**
      * Конструктор класса Star вызывает super-конструктор класса GameObject для установки
-     * координат и скорости, а затем устанавливает размер звезды.
+     * координат и скорости, а затем устанавливает размеры звезд.
      * @param location
      * @param speed
      * @param size
