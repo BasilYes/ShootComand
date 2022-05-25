@@ -15,7 +15,7 @@ import comand.play.shootemup.controller.GameView;
  * @see Enemy
  */
 public class DefaultEnemy extends Enemy{
-    float size = 0.09f;
+    float size = 0.1f;
     float fireReating = 1.5f;
     float fireStatus = 0.0f;
 

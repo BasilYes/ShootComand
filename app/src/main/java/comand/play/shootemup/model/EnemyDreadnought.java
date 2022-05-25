@@ -92,7 +92,7 @@ public class EnemyDreadnought extends Enemy{
         path.lineTo(location.x              *multiple, (location.y - 0.5f*size)*multiple);
         path.close();
         canvas.drawPath(path,paint);
-        paint.setColor(Color.argb(255,200,140,140));
+        paint.setColor(Color.argb(255,200,139,140));
         path = new Path();
         path.moveTo(location.x              *multiple, (location.y - 0.5f*size)*multiple);
         path.lineTo((location.x + 0.5f*size)*multiple, location.y              *multiple);

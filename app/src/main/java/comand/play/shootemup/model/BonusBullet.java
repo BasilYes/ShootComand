@@ -65,6 +65,20 @@ public class BonusBullet extends Bonus{
     public void Draw(Canvas canvas, Paint paint) {
         paint.setColor(Color.argb(255, 0, 255, 0));
         float multiple = GameView.displaySize.x;
-        canvas.drawCircle(location.x*multiple, location.y*multiple, size*multiple, paint);
+        Path path = new Path();
+        Point[] myPath = { new Point(location.x * multiple, location.y * multiple),
+                new Point((location.x - 0.05f) * multiple, (location.y + 0.04f) * multiple),
+                new Point((location.x - 0.05f)  * multiple, (location.y + 0.08f) * multiple),
+                new Point((location.x + 0.05f) * multiple, (location.y + 0.08f) * multiple),
+                new Point((location.x + 0.05f)  * multiple, (location.y + 0.04f) * multiple),
+                new Point(location.x * multiple, location.y * multiple)};
+        // переходим в первую точку рисования
+        path.moveTo(myPath[0].x, myPath[0].y);
+        // рисуем отрезки по заданным точкам
+        for (int i = 1; i < myPath.length; i++){
+            path.lineTo(myPath[i].x, myPath[i].y);
+        }
+
+        canvas.drawPath(path, paint);
     }
 }
