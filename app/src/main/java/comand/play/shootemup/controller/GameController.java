@@ -191,7 +191,7 @@ public class GameController{
                 if (rnd.nextGaussian() > 0.5 && obj.getClass() == EnemyDreadnought.class){
                     bonuses.add(new BonusBullet(obj.location, 0.1f));
                 } else if (obj.getClass() == EnemyDreadnought.class){
-                    bonuses.add(new Bonus(obj.location, 0.1f));
+                    bonuses.add(new Bonus(obj.location, 0.02f));
                 }
             } else if (obj.location.y <= ySize) {
                 newEnemy.add(obj);
